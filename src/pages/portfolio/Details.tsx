@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useMemo } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Banner from '../../styles/Banner';
 
@@ -7,6 +7,7 @@ import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import portfolioData from '../../data/portfolio';
 
 const PorfolioDetails = styled.p`
    line-height: 1.5;
@@ -88,6 +89,8 @@ const SwiperContainer = styled.div`
    .swiper {
       .swiper-slide {
          height: 702px;
+         background-size: cover;
+         background-position: center;
       }
    }
    .custom-swiper-pagination {
@@ -157,42 +160,37 @@ const MainArticle = styled.div`
 `; */
 
 const PortfolioDetails = () => {
+   const { id: idx } = useParams();
+   const data = useMemo(() => idx ? portfolioData[parseInt(idx)] : null, [idx]);
+
+   useEffect(() => {
+      if (!data) window.location.replace('/');
+   }, [data]);
+
    return (
       <section>
          <Banner.Detailed>
             <Banner.Container.Detailed>
                <PorfolioDetails>
-                  {/* <span className="label">Production period</span>
-                  <span className="text">2021.10.01 - 2021.10.31</span> */}
                   <span className="label">Scope</span>
-                  <span className="text">Design, Planning , Development</span>
+                  <span className="text">{data?.scopes.join(', ')}</span>
                   <br className="show-on-mobile" />
                   <span className="label">Skills</span>
-                  <span className="text">photoshop, Figma, Node.js</span>
+                  <span className="text">{data?.skills.join(', ')}</span>
                </PorfolioDetails>
                <PortfolioTitle>
-                  <h1>1.2m record (프로젝트 제목)</h1>
-                  <p>힐링카페 1.2m record의 PC 및 모바일 반응형 웹 사이트 개발 프로젝트 (한줄 설명)</p>
+                  <h1>{data?.title}</h1>
+                  <p>{data?.subtitle}</p>
                </PortfolioTitle>
             </Banner.Container.Detailed>
          </Banner.Detailed>
          
          <ChipContainer>
             <div className="row">
-               <div className="chip">Admin</div>
-               <div className="chip">Website</div>
-               <div className="chip">Produce</div>
-               <div className="chip">Responsive</div>
-               <div className="chip">Responsive</div>
-               <div className="chip">Responsive</div>
-               <div className="chip">Responsive</div>
+               {data?.categories.map((category, idx) => <div className="chip" key={idx}>{category}</div>)}
             </div>
          </ChipContainer>
          <div style={{ height: 1, backgroundColor: '#a3a3a34d' }} />
-
-         {/* <ImageContainer>
-            <div style={{ background: '#777', height: 1000 }} />
-         </ImageContainer> */}
          
          <SwiperContainer>
             <Swiper
@@ -205,33 +203,29 @@ const PortfolioDetails = () => {
                   }
                }}
             >
-               <SwiperSlide style={{ backgroundColor: 'dodgerblue' }}>slide 5</SwiperSlide>
-               <SwiperSlide style={{ backgroundColor: 'gray' }}>slide 1</SwiperSlide>
-               <SwiperSlide style={{ backgroundColor: 'green' }}>slide 2</SwiperSlide>
-               <SwiperSlide style={{ backgroundColor: 'pink' }}>slide 3</SwiperSlide>
-               <SwiperSlide style={{ backgroundColor: 'orange' }}>slide 4</SwiperSlide>
+               {data?.slideImages.map((image, idx) => <SwiperSlide key={image} style={{ backgroundImage: `url(../portfolio/slide/${image})` }}></SwiperSlide>)}
             </Swiper>
             <div className="custom-swiper-pagination"></div>
-            <div className="swiper-slide-title">Main page</div>
+            {/* <div className="swiper-slide-title">Main page</div> */}
          </SwiperContainer>
 
          <MainArticleContainer>
             <MainArticle>
+               <h2>Background</h2>
+               <p>{data?.description}</p>
+            </MainArticle>
+            {/* <MainArticle>
                <h2>We can do many things.</h2>
                <p>
                   아무글 펌 네이버(주)는 글로벌 ICT 기업으로서 한국 최대 검색포털 네이버를 서비스하고 있고, 그 계열사에서 모바일 메신저 라인, 동영상 카메라 스노우, 디지털 만화 서비스 네이버웹툰, 메타버스 서비스 제페토 등을 서비스하고 있습니다. 또한, 네이버(주)는 인공지능, 로보틱스, 모빌리티 등 미래 기술에 대한 지속적인 연구개발을 통해 기술 플랫폼의 변화와 혁신을 추구하며 세계 각국의 수많은 이용자와 다양한 파트너들이 함께 성장할 수 있도록 노력하고 있습니다.
                </p>
-            </MainArticle>
-            <MainArticle>
-               <h2>We can do many things.</h2>
-               <p>
-                  아무글 펌 네이버(주)는 글로벌 ICT 기업으로서 한국 최대 검색포털 네이버를 서비스하고 있고, 그 계열사에서 모바일 메신저 라인, 동영상 카메라 스노우, 디지털 만화 서비스 네이버웹툰, 메타버스 서비스 제페토 등을 서비스하고 있습니다. 또한, 네이버(주)는 인공지능, 로보틱스, 모빌리티 등 미래 기술에 대한 지속적인 연구개발을 통해 기술 플랫폼의 변화와 혁신을 추구하며 세계 각국의 수많은 이용자와 다양한 파트너들이 함께 성장할 수 있도록 노력하고 있습니다.
-               </p>
-            </MainArticle>
+            </MainArticle> */}
          </MainArticleContainer>
-         <div style={{ padding: 30, textAlign: 'center', color: '#003fff', marginBottom: 100, textDecoration: 'underline' }}>
+
+         <div style={{ marginBottom: 250 }} />
+         {/* <div style={{ padding: 30, textAlign: 'center', color: '#003fff', marginBottom: 100, textDecoration: 'underline' }}>
             <Link to="#">View site</Link>
-         </div>
+         </div> */}
 
          {/* <Container>
 

@@ -15,6 +15,9 @@ const Container = styled.div`
 const ImageBanner = styled.div`
    height: 300px;
    background-color: #e0e0e0;
+   background-image: url('banner.png');
+   background-size: cover;
+   background-position: center;
    @media only screen and (max-width: 1000px) {
       height: 84px;
    }

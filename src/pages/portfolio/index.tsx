@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import portfolioData from '../../data/portfolio';
 import Banner from '../../styles/Banner';
 
 const Container = styled.div`
@@ -24,6 +25,8 @@ const Container = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
 
       .title {
          margin-bottom: 8px;
@@ -61,7 +64,15 @@ const Portfolio = () => {
             </Banner.Container.Default>
          </Banner.Default>
          <Container>
-            <Link to="/portfolio/1" className="card">
+            {portfolioData.map((d, idx) => (
+               <Link to={`/portfolio/${idx}`} className="card" key={idx} style={{ backgroundImage: `url(../portfolio/thumbnail/${d.thumbnail})` }}>
+                  <div className="title">{d.title}</div>
+                  <div className="description">
+                     {d.skills.slice(0, 2).map((text, textIndex) => <span key={textIndex}>{text}</span>)}
+                  </div>
+               </Link>
+            ))}
+            {/* <Link to="/portfolio/1" className="card">
                <div className="title">1.2m record</div>
                <div className="description">
                   <span>반응형</span>
@@ -137,7 +148,7 @@ const Portfolio = () => {
                   <span>반응형</span>
                   <span>Web</span>
                </div>
-            </Link>
+            </Link> */}
          </Container>
       </section>
    );

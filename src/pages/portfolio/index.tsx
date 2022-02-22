@@ -16,7 +16,6 @@ const Container = styled.div`
       width: 420px;
       height: 560px;
       flex-grow: 0;
-      background-color: #777;
       margin-bottom: 15px;
       margin-right: 15px;
       padding: 24px;
@@ -65,7 +64,7 @@ const Portfolio = () => {
          </Banner.Default>
          <Container>
             {portfolioData.map((d, idx) => (
-               <Link to={`/portfolio/${idx}`} className="card" key={idx} style={{ backgroundImage: `url(../portfolio/thumbnail/${d.thumbnail})` }}>
+               <Link to={`/portfolio/${idx}`} className="card" key={idx} style={{ backgroundImage: `url(/nineright-portfolio/portfolio/thumbnail/${d.thumbnail})` }}>
                   <div className="title">{d.title}</div>
                   <div className="description">
                      {d.skills.slice(0, 2).map((text, textIndex) => <span key={textIndex}>{text}</span>)}

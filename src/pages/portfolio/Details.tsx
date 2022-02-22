@@ -203,7 +203,7 @@ const PortfolioDetails = () => {
                   }
                }}
             >
-               {data?.slideImages.map((image, idx) => <SwiperSlide key={image} style={{ backgroundImage: `url(../portfolio/slide/${image})` }}></SwiperSlide>)}
+               {data?.slideImages.map((image, idx) => <SwiperSlide key={image} style={{ backgroundImage: `url(/nineright-portfolio/portfolio/slide/${image})` }}></SwiperSlide>)}
             </Swiper>
             <div className="custom-swiper-pagination"></div>
             {/* <div className="swiper-slide-title">Main page</div> */}

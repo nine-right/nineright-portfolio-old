@@ -203,7 +203,15 @@ const PortfolioDetails = () => {
                   }
                }}
             >
-               {data?.slideImages.map((image, idx) => <SwiperSlide key={image} style={{ backgroundImage: `url(/nineright-portfolio/portfolio/slide/${image})` }}></SwiperSlide>)}
+               {(data && data.slideImages.length) ? 
+                  data?.slideImages.map((image, idx) => <SwiperSlide key={image} style={{ backgroundImage: `url(/nineright-portfolio/images/portfolio/slide/${image})` }} />) :
+                  <SwiperSlide style={{
+                     backgroundImage: `url(/nineright-portfolio/images/thumbnail_default.png)`,
+                     backgroundSize: 'contain',
+                     backgroundColor: '#0094ff',
+                     backgroundRepeat: 'no-repeat'
+                  }} />
+               }
             </Swiper>
             <div className="custom-swiper-pagination"></div>
             {/* <div className="swiper-slide-title">Main page</div> */}

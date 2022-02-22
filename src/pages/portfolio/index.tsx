@@ -64,10 +64,19 @@ const Portfolio = () => {
          </Banner.Default>
          <Container>
             {portfolioData.map((d, idx) => (
-               <Link to={`/portfolio/${idx}`} className="card" key={idx} style={{ backgroundImage: `url(/nineright-portfolio/portfolio/thumbnail/${d.thumbnail})` }}>
-                  <div className="title">{d.title}</div>
+               <Link
+                  to={`/portfolio/${idx}`}
+                  className="card"
+                  key={idx}
+                  style={{ 
+                     backgroundImage: d.thumbnail ?
+                        `url(/nineright-portfolio/images/portfolio/thumbnail/${d?.thumbnail})` :
+                        `url(/nineright-portfolio/images/thumbnail_default.png)`
+                  }}
+               >
+                  <div className="title">{d?.title}</div>
                   <div className="description">
-                     {d.skills.slice(0, 2).map((text, textIndex) => <span key={textIndex}>{text}</span>)}
+                     {d?.skills.slice(0, 2).map((text, textIndex) => <span key={textIndex}>{text}</span>)}
                   </div>
                </Link>
             ))}

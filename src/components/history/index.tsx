@@ -97,45 +97,31 @@ const History = () => {
       <HistoryWrapper>
          <HistoryColumn>
             <div className="date">2022.04</div>
-            <div className="content">
-               본사 확장이전
-            </div>
+            <div className="content">본사 확장이전 (예정)</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2022.02</div>
-            <div className="content">
-               법인전환
-            </div>
+            <div className="content">법인전환</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2022.01</div>
-            <div className="content">
-               전년도 매출대비 5배 성장
-            </div>
+            <div className="content">전년도 매출대비 5배 성장</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2021.06</div>
-            <div className="content">
-               에이전시 사업팀 편성
-            </div>
+            <div className="content">에이전시 사업팀 편성</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2021.01</div>
-            <div className="content">
-               본사이전
-            </div>
+            <div className="content">본사이전</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2020.03</div>
-            <div className="content">
-               게임사업팀 편성
-            </div>
+            <div className="content">게임사업팀 편성</div>
          </HistoryColumn>
          <HistoryColumn>
             <div className="date">2020.02</div>
-            <div className="content">
-               회사설립
-            </div>
+            <div className="content">회사설립</div>
          </HistoryColumn>
       </HistoryWrapper>
    );
